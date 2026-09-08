@@ -11,7 +11,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 * {
@@ -106,6 +109,11 @@ button {
 
 button:active {
     transform: scale(.98);
+}
+
+button:disabled {
+    opacity: .7;
+    cursor: not-allowed;
 }
 
 .btn-primary {
@@ -348,6 +356,7 @@ th {
 
     </div>
 
+
     <!-- ADD ITEM -->
     <div class="card">
 
@@ -403,6 +412,7 @@ th {
 
     </div>
 
+
     <!-- DISCOUNT / PAID -->
     <div class="card">
 
@@ -442,6 +452,7 @@ th {
 
     </div>
 
+
     <!-- VOUCHER -->
     <div class="card">
 
@@ -462,6 +473,7 @@ th {
 
             </div>
 
+
             <div class="voucher-info">
 
                 <span id="displayCustomer">
@@ -472,6 +484,7 @@ th {
 
             </div>
 
+
             <table>
 
                 <thead>
@@ -481,15 +494,23 @@ th {
                         <th>ခုရေ</th>
                         <th>စျေးနှုန်း</th>
                         <th>ကျသင့်ငွေ</th>
-                        <th class="no-pdf">လုပ်ဆောင်ချက်</th>
+
+                        <!-- PDF မှာ ဖျောက်မယ့် column -->
+                        <th class="no-pdf">
+                            လုပ်ဆောင်ချက်
+                        </th>
                     </tr>
 
                 </thead>
 
+
                 <tbody id="voucherBody">
 
                     <tr>
-                        <td colspan="5" class="empty">
+                        <td
+                            colspan="5"
+                            class="empty"
+                        >
                             ပစ္စည်းထည့်ရန်
                         </td>
                     </tr>
@@ -498,36 +519,77 @@ th {
 
             </table>
 
+
             <div class="summary">
 
                 <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span id="subtotal">0 MMK</span>
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        0 MMK
+                    </span>
+
                 </div>
 
+
                 <div class="summary-row">
-                    <span>Discount</span>
-                    <span id="displayDiscount">0 MMK</span>
+
+                    <span>
+                        Discount
+                    </span>
+
+                    <span id="displayDiscount">
+                        0 MMK
+                    </span>
+
                 </div>
+
 
                 <div class="summary-row summary-total">
-                    <span>စုစုပေါင်း</span>
-                    <span id="grandTotal">0 MMK</span>
+
+                    <span>
+                        စုစုပေါင်း
+                    </span>
+
+                    <span id="grandTotal">
+                        0 MMK
+                    </span>
+
                 </div>
+
 
                 <div class="summary-row">
-                    <span>ပေးငွေ</span>
-                    <span id="displayPaid">0 MMK</span>
+
+                    <span>
+                        ပေးငွေ
+                    </span>
+
+                    <span id="displayPaid">
+                        0 MMK
+                    </span>
+
                 </div>
 
+
                 <div class="summary-row balance">
-                    <span>ကျန်ငွေ</span>
-                    <span id="balance">0 MMK</span>
+
+                    <span>
+                        ကျန်ငွေ
+                    </span>
+
+                    <span id="balance">
+                        0 MMK
+                    </span>
+
                 </div>
 
             </div>
 
         </div>
+
 
         <button
             type="button"
@@ -537,6 +599,7 @@ th {
             📄 PDF ဘောင်ချာထုတ်မည်
         </button>
 
+
         <button
             type="button"
             class="btn-share"
@@ -545,19 +608,32 @@ th {
             📤 Voucher Share မည်
         </button>
 
-        <div id="status" class="status"></div>
+
+        <div
+            id="status"
+            class="status"
+        ></div>
 
     </div>
 
 </div>
 
+
+<!-- HTML2CANVAS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+<!-- JSPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 
 <script>
 
 "use strict";
+
+
+/* =========================
+   DATA
+========================= */
 
 let items = [];
 
@@ -590,11 +666,14 @@ function getVoucherNumber() {
         localStorage.getItem("voucherNumber");
 
     if (!number) {
+
         number = "1001";
+
         localStorage.setItem(
             "voucherNumber",
             number
         );
+
     }
 
     return number;
@@ -624,10 +703,14 @@ function nextVoucherNumber() {
 function saveShopInfo() {
 
     const name =
-        document.getElementById("shopName").value;
+        document.getElementById(
+            "shopName"
+        ).value;
 
     const phone =
-        document.getElementById("shopPhone").value;
+        document.getElementById(
+            "shopPhone"
+        ).value;
 
     localStorage.setItem(
         "shopName",
@@ -649,10 +732,14 @@ function saveShopInfo() {
 function loadShopInfo() {
 
     const name =
-        localStorage.getItem("shopName");
+        localStorage.getItem(
+            "shopName"
+        );
 
     const phone =
-        localStorage.getItem("shopPhone");
+        localStorage.getItem(
+            "shopPhone"
+        );
 
     if (name) {
 
@@ -684,20 +771,24 @@ function updateVoucher() {
             "shopName"
         ).value.trim();
 
+
     const shopPhone =
         document.getElementById(
             "shopPhone"
         ).value.trim();
+
 
     const customer =
         document.getElementById(
             "customerName"
         ).value.trim();
 
+
     document.getElementById(
         "displayShopName"
     ).textContent =
         shopName || "ဆိုင်အမည်";
+
 
     document.getElementById(
         "displayShopPhone"
@@ -706,6 +797,7 @@ function updateVoucher() {
         ? "ဖုန်း - " + shopPhone
         : "";
 
+
     document.getElementById(
         "displayCustomer"
     ).textContent =
@@ -713,22 +805,28 @@ function updateVoucher() {
         ? "ဝယ်ယူသူ - " + customer
         : "ဝယ်ယူသူ -";
 
+
     document.getElementById(
         "voucherNo"
     ).textContent =
         getVoucherNumber();
 
-    const now = new Date();
+
+    const now =
+        new Date();
+
 
     const date =
         now.toLocaleDateString(
             "en-GB"
         );
 
+
     document.getElementById(
         "displayDate"
     ).textContent =
         "ရက်စွဲ - " + date;
+
 
     updateTable();
 
@@ -746,24 +844,34 @@ function addItem() {
             "itemName"
         );
 
+
     const qtyInput =
         document.getElementById(
             "itemQty"
         );
+
 
     const priceInput =
         document.getElementById(
             "itemPrice"
         );
 
+
     const name =
         nameInput.value.trim();
 
+
     const qty =
-        Number(qtyInput.value);
+        Number(
+            qtyInput.value
+        );
+
 
     const price =
-        Number(priceInput.value);
+        Number(
+            priceInput.value
+        );
+
 
     if (!name) {
 
@@ -774,7 +882,9 @@ function addItem() {
         nameInput.focus();
 
         return;
+
     }
+
 
     if (
         !Number.isFinite(qty) ||
@@ -788,7 +898,9 @@ function addItem() {
         qtyInput.focus();
 
         return;
+
     }
+
 
     if (
         !Number.isFinite(price) ||
@@ -802,7 +914,9 @@ function addItem() {
         priceInput.focus();
 
         return;
+
     }
+
 
     const item = {
 
@@ -855,13 +969,18 @@ function updateTable() {
             "voucherBody"
         );
 
+
     tbody.innerHTML = "";
+
 
     if (items.length === 0) {
 
         tbody.innerHTML = `
             <tr>
-                <td colspan="5" class="empty">
+                <td
+                    colspan="5"
+                    class="empty"
+                >
                     ပစ္စည်းထည့်ရန်
                 </td>
             </tr>
@@ -870,6 +989,7 @@ function updateTable() {
         updateSummary();
 
         return;
+
     }
 
 
@@ -881,6 +1001,9 @@ function updateTable() {
                     "tr"
                 );
 
+
+            /* ITEM NAME */
+
             const name =
                 document.createElement(
                     "td"
@@ -889,6 +1012,8 @@ function updateTable() {
             name.textContent =
                 item.name;
 
+
+            /* QTY */
 
             const qty =
                 document.createElement(
@@ -902,6 +1027,8 @@ function updateTable() {
                 "center";
 
 
+            /* PRICE */
+
             const price =
                 document.createElement(
                     "td"
@@ -913,6 +1040,8 @@ function updateTable() {
             price.className =
                 "right";
 
+
+            /* SUBTOTAL */
 
             const subtotal =
                 document.createElement(
@@ -926,13 +1055,20 @@ function updateTable() {
                 "right";
 
 
+            /* ACTION */
+
             const action =
                 document.createElement(
                     "td"
                 );
 
+            /*
+                IMPORTANT:
+                no-pdf = PDF ထဲမှာ ဒီ cell မပါပါ
+            */
+
             action.className =
-                "center";
+                "center no-pdf";
 
 
             const actionBox =
@@ -944,12 +1080,15 @@ function updateTable() {
                 "item-actions";
 
 
+            /* EDIT BUTTON */
+
             const edit =
                 document.createElement(
                     "button"
                 );
 
-            edit.type = "button";
+            edit.type =
+                "button";
 
             edit.textContent =
                 "✏️";
@@ -965,12 +1104,15 @@ function updateTable() {
                 };
 
 
+            /* DELETE BUTTON */
+
             const remove =
                 document.createElement(
                     "button"
                 );
 
-            remove.type = "button";
+            remove.type =
+                "button";
 
             remove.textContent =
                 "🗑️";
@@ -994,22 +1136,38 @@ function updateTable() {
                 remove
             );
 
+
             action.appendChild(
                 actionBox
             );
 
 
-            row.appendChild(name);
+            /* ADD CELLS */
 
-            row.appendChild(qty);
+            row.appendChild(
+                name
+            );
 
-            row.appendChild(price);
+            row.appendChild(
+                qty
+            );
 
-            row.appendChild(subtotal);
+            row.appendChild(
+                price
+            );
 
-            row.appendChild(action);
+            row.appendChild(
+                subtotal
+            );
 
-            tbody.appendChild(row);
+            row.appendChild(
+                action
+            );
+
+
+            tbody.appendChild(
+                row
+            );
 
         }
     );
@@ -1029,22 +1187,28 @@ function editItem(index) {
     const item =
         items[index];
 
+
     document.getElementById(
         "itemName"
     ).value =
         item.name;
+
 
     document.getElementById(
         "itemQty"
     ).value =
         item.qty;
 
+
     document.getElementById(
         "itemPrice"
     ).value =
         item.price;
 
-    editingIndex = index;
+
+    editingIndex =
+        index;
+
 
     document.getElementById(
         "itemName"
@@ -1064,14 +1228,23 @@ function deleteItem(index) {
             "ဒီပစ္စည်းကို ဖျက်မလား?"
         );
 
+
     if (!ok) {
+
         return;
+
     }
+
 
     items.splice(
         index,
         1
     );
+
+
+    editingIndex =
+        -1;
+
 
     updateVoucher();
 
@@ -1085,6 +1258,7 @@ function deleteItem(index) {
 function updateSummary() {
 
     let total = 0;
+
 
     items.forEach(
         function(item) {
@@ -1131,37 +1305,42 @@ function updateSummary() {
     document.getElementById(
         "subtotal"
     ).textContent =
-        money(total) + " MMK";
+        money(total) +
+        " MMK";
 
 
     document.getElementById(
         "displayDiscount"
     ).textContent =
-        money(discount) + " MMK";
+        money(discount) +
+        " MMK";
 
 
     document.getElementById(
         "grandTotal"
     ).textContent =
-        money(grandTotal) + " MMK";
+        money(grandTotal) +
+        " MMK";
 
 
     document.getElementById(
         "displayPaid"
     ).textContent =
-        money(paid) + " MMK";
+        money(paid) +
+        " MMK";
 
 
     document.getElementById(
         "balance"
     ).textContent =
-        money(balance) + " MMK";
+        money(balance) +
+        " MMK";
 
 }
 
 
 /* =========================
-   PDF
+   GENERATE PDF
 ========================= */
 
 async function generatePDF() {
@@ -1173,6 +1352,7 @@ async function generatePDF() {
         );
 
         return;
+
     }
 
 
@@ -1186,6 +1366,7 @@ async function generatePDF() {
         );
 
         return;
+
     }
 
 
@@ -1199,6 +1380,7 @@ async function generatePDF() {
         );
 
         return;
+
     }
 
 
@@ -1216,7 +1398,9 @@ async function generatePDF() {
 
     try {
 
-        button.disabled = true;
+        button.disabled =
+            true;
+
 
         button.textContent =
             "PDF ပြုလုပ်နေပါသည်...";
@@ -1229,14 +1413,59 @@ async function generatePDF() {
         }
 
 
+        /*
+        ====================================
+        IMPORTANT PDF FIX
+        ====================================
+
+        Original App ကို မပြောင်းပါ။
+
+        html2canvas က PDF အတွက်
+        cloned voucher တစ်ခုကို ဖန်တီးတဲ့အချိန်
+
+        .no-pdf အားလုံးကို display:none
+        လုပ်ပေးပါတယ်။
+
+        ဒါကြောင့် App မှာ
+        Edit/Delete မြင်ရမယ်။
+
+        PDF မှာတော့
+        Edit/Delete မမြင်ရပါ။
+        */
+
         const canvas =
             await html2canvas(
                 voucher,
                 {
                     scale: 2,
+
                     useCORS: true,
+
                     backgroundColor:
-                        "#ffffff"
+                        "#ffffff",
+
+                    onclone:
+                        function(
+                            clonedDocument
+                        ) {
+
+                            const hiddenElements =
+                                clonedDocument
+                                    .querySelectorAll(
+                                        ".no-pdf"
+                                    );
+
+
+                            hiddenElements.forEach(
+                                function(el) {
+
+                                    el.style.display =
+                                        "none";
+
+                                }
+                            );
+
+                        }
                 }
             );
 
@@ -1269,7 +1498,8 @@ async function generatePDF() {
                 .getHeight();
 
 
-        const margin = 10;
+        const margin =
+            10;
 
 
         const width =
@@ -1309,6 +1539,8 @@ async function generatePDF() {
         );
 
 
+        /* FILE NAME */
+
         let shopName =
             document.getElementById(
                 "shopName"
@@ -1335,22 +1567,31 @@ async function generatePDF() {
         const date =
             new Date()
                 .toISOString()
-                .slice(0, 10);
+                .slice(
+                    0,
+                    10
+                );
 
 
         const number =
             getVoucherNumber();
 
 
-        pdf.save(
+        const fileName =
             shopName +
             "_Voucher_" +
             number +
             "_" +
             date +
-            ".pdf"
+            ".pdf";
+
+
+        pdf.save(
+            fileName
         );
 
+
+        /* NEXT VOUCHER NUMBER */
 
         nextVoucherNumber();
 
@@ -1369,7 +1610,10 @@ async function generatePDF() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         alert(
             "PDF ထုတ်ရာတွင် Error ဖြစ်နေပါသည်။\n\n" +
@@ -1379,7 +1623,9 @@ async function generatePDF() {
 
     } finally {
 
-        button.disabled = false;
+        button.disabled =
+            false;
+
 
         button.textContent =
             "📄 PDF ဘောင်ချာထုတ်မည်";
@@ -1402,6 +1648,7 @@ async function shareVoucher() {
         );
 
         return;
+
     }
 
 
@@ -1438,6 +1685,7 @@ async function shareVoucher() {
                 {
                     title:
                         "Shop Voucher",
+
                     text:
                         text
                 }
@@ -1459,13 +1707,16 @@ async function shareVoucher() {
                 text
             );
 
+
             alert(
                 "Voucher အချက်အလက်ကို Copy လုပ်ပြီးပါပြီ။"
             );
 
         } catch (error) {
 
-            alert(text);
+            alert(
+                text
+            );
 
         }
 
@@ -1482,10 +1733,14 @@ document.addEventListener(
     "keydown",
     function(event) {
 
+        const activeElement =
+            document.activeElement;
+
+
         const id =
-            document.activeElement
-                ? document.activeElement.id
-                : "";
+            activeElement
+            ? activeElement.id
+            : "";
 
 
         if (
@@ -1508,7 +1763,7 @@ document.addEventListener(
 
 
 /* =========================
-   START
+   START APP
 ========================= */
 
 loadShopInfo();
@@ -1530,7 +1785,7 @@ if (
 
             navigator.serviceWorker
                 .register(
-                    "sw.js"
+                    "./sw.js"
                 )
                 .catch(
                     function(error) {
