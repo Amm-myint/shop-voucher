@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shop Voucher</title>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2563eb">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 12px;
+    background: #f1f5f9;
+    color: #1e293b;
+    font-family: "Noto Sans Myanmar", sans-serif;
+}
+
+.container {
+    max-width: 760px;
+    margin: auto;
+}
+
+.app-title {
+    text-align: center;
+    margin: 10px 0 18px;
+}
+
+.app-title h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.app-title p {
+    margin: 4px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    padding: 8px 11px;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    background: white;
+}
+
+input:focus {
+    border-color: #2563eb;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.field {
+    flex: 1;
+    margin-bottom: 12px;
+}
+
+.item-field {
+    flex: 2;
+}
+
+button {
+    border: 0;
+    border-radius: 9px;
+    min-height: 46px;
+    padding: 10px 15px;
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+.btn-primary {
+    width: 100%;
+    background: #2563eb;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.btn-pdf {
+    width: 100%;
+    background: #ea580c;
+    margin-top: 12px;
+}
+
+.btn-share {
+    width: 100%;
+    background: #16a34a;
+    margin-top: 10px;
+}
+
+.btn-small {
+    min-width: 45px;
+    padding: 5px 8px;
+    min-height: 36px;
+    font-size: 13px;
+}
+
+.btn-edit {
+    background: #f59e0b;
+}
+
+.btn-delete {
+    background: #dc2626;
+}
+
+.voucher {
+    background: white;
+    border: 1px solid #dbe3ec;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.voucher-header {
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #cbd5e1;
+}
+
+.voucher-header h2 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.voucher-header p {
+    margin: 4px 0 0;
+    font-size: 13px;
+}
+
+.voucher-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #dbe3ec;
+    padding: 8px;
+    font-size: 12px;
+}
+
+th {
+    background: #2563eb;
+    color: white;
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.empty {
+    text-align: center;
+    color: #94a3b8;
+    padding: 22px;
+}
+
+.summary {
+    margin-top: 15px;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 12px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 14px;
+}
+
+.summary-total {
+    font-size: 18px;
+    font-weight: 700;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 6px;
+    padding-top: 8px;
+}
+
+.balance {
+    font-weight: 700;
+}
+
+.item-actions {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.status {
+    text-align: center;
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 8px;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .voucher {
+        padding: 12px;
+    }
+
+    .voucher-header h2 {
+        font-size: 21px;
+    }
+
+    th,
+    td {
+        padding: 6px 4px;
+        font-size: 10px;
+    }
+
+    .voucher-info {
+        font-size: 11px;
+    }
+
+    .item-actions {
+        flex-direction: column;
+    }
+
+    .btn-small {
+        min-width: 38px;
+        font-size: 10px;
+        padding: 4px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="app-title">
+        <h1>🧾 ဆိုင်ဘောင်ချာ</h1>
+        <p>Shop Voucher Generator</p>
+    </div>
+
+    <!-- SHOP INFORMATION -->
+    <div class="card">
+
+        <div class="section-title">
+            🏪 ဆိုင်အချက်အလက်
+        </div>
+
+        <div class="row">
+
+            <div class="field">
+                <label>ဆိုင်အမည်</label>
+
+                <input
+                    id="shopName"
+                    type="text"
+                    placeholder="ဥပမာ - ရွှေစင် စတိုး"
+                    oninput="saveShopInfo(); updateVoucher();"
+                >
+            </div>
+
+            <div class="field">
+                <label>ဖုန်းနံပါတ်</label>
+
+                <input
+                    id="shopPhone"
+                    type="text"
+                    placeholder="09xxxxxxxxx"
+                    oninput="saveShopInfo(); updateVoucher();"
+                >
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>ဝယ်ယူသူအမည်</label>
+
+            <input
+                id="customerName"
+                type="text"
+                placeholder="ဝယ်ယူသူအမည်"
+                oninput="updateVoucher()"
+            >
+        </div>
+
+    </div>
+
+    <!-- ADD ITEM -->
+    <div class="card">
+
+        <div class="section-title">
+            🛒 ပစ္စည်းထည့်ရန်
+        </div>
+
+        <div class="row">
+
+            <div class="field item-field">
+                <label>ပစ္စည်းအမည်</label>
+
+                <input
+                    id="itemName"
+                    type="text"
+                    placeholder="ပစ္စည်းအမည်"
+                >
+            </div>
+
+            <div class="field">
+                <label>ခုရေ</label>
+
+                <input
+                    id="itemQty"
+                    type="number"
+                    min="1"
+                    value="1"
+                    inputmode="numeric"
+                >
+            </div>
+
+            <div class="field">
+                <label>စျေးနှုန်း</label>
+
+                <input
+                    id="itemPrice"
+                    type="number"
+                    min="0"
+                    placeholder="1000"
+                    inputmode="decimal"
+                >
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="btn-primary"
+            onclick="addItem()"
+        >
+            + ပစ္စည်းထည့်မည်
+        </button>
+
+    </div>
+
+    <!-- DISCOUNT / PAID -->
+    <div class="card">
+
+        <div class="section-title">
+            💰 ငွေပေးချေမှု
+        </div>
+
+        <div class="row">
+
+            <div class="field">
+                <label>Discount (MMK)</label>
+
+                <input
+                    id="discount"
+                    type="number"
+                    min="0"
+                    value="0"
+                    inputmode="decimal"
+                    oninput="updateVoucher()"
+                >
+            </div>
+
+            <div class="field">
+                <label>ပေးငွေ (MMK)</label>
+
+                <input
+                    id="paid"
+                    type="number"
+                    min="0"
+                    value="0"
+                    inputmode="decimal"
+                    oninput="updateVoucher()"
+                >
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- VOUCHER -->
+    <div class="card">
+
+        <div id="printableVoucher" class="voucher">
+
+            <div class="voucher-header">
+
+                <h2 id="displayShopName">
+                    ဆိုင်အမည်
+                </h2>
+
+                <p id="displayShopPhone"></p>
+
+                <p>
+                    Voucher No:
+                    <span id="voucherNo"></span>
+                </p>
+
+            </div>
+
+            <div class="voucher-info">
+
+                <span id="displayCustomer">
+                    ဝယ်ယူသူ -
+                </span>
+
+                <span id="displayDate"></span>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>အမျိုးအမည်</th>
+                        <th>ခုရေ</th>
+                        <th>စျေးနှုန်း</th>
+                        <th>ကျသင့်ငွေ</th>
+                        <th>လုပ်ဆောင်ချက်</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="voucherBody">
+
+                    <tr>
+                        <td colspan="5" class="empty">
+                            ပစ္စည်းထည့်ရန်
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="summary">
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">0 MMK</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Discount</span>
+                    <span id="displayDiscount">0 MMK</span>
+                </div>
+
+                <div class="summary-row summary-total">
+                    <span>စုစုပေါင်း</span>
+                    <span id="grandTotal">0 MMK</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>ပေးငွေ</span>
+                    <span id="displayPaid">0 MMK</span>
+                </div>
+
+                <div class="summary-row balance">
+                    <span>ကျန်ငွေ</span>
+                    <span id="balance">0 MMK</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="btn-pdf"
+            onclick="generatePDF()"
+        >
+            📄 PDF ဘောင်ချာထုတ်မည်
+        </button>
+
+        <button
+            type="button"
+            class="btn-share"
+            onclick="shareVoucher()"
+        >
+            📤 Voucher Share မည်
+        </button>
+
+        <div id="status" class="status"></div>
+
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+
+"use strict";
+
+let items = [];
+
+let editingIndex = -1;
+
+
+/* =========================
+   FORMAT MONEY
+========================= */
+
+function money(value) {
+
+    return Number(value || 0).toLocaleString(
+        "en-US",
+        {
+            maximumFractionDigits: 2
+        }
+    );
+
+}
+
+
+/* =========================
+   VOUCHER NUMBER
+========================= */
+
+function getVoucherNumber() {
+
+    let number =
+        localStorage.getItem("voucherNumber");
+
+    if (!number) {
+        number = "1001";
+        localStorage.setItem(
+            "voucherNumber",
+            number
+        );
+    }
+
+    return number;
+
+}
+
+
+function nextVoucherNumber() {
+
+    let number =
+        Number(getVoucherNumber());
+
+    number++;
+
+    localStorage.setItem(
+        "voucherNumber",
+        String(number)
+    );
+
+}
+
+
+/* =========================
+   SHOP INFO
+========================= */
+
+function saveShopInfo() {
+
+    const name =
+        document.getElementById("shopName").value;
+
+    const phone =
+        document.getElementById("shopPhone").value;
+
+    localStorage.setItem(
+        "shopName",
+        name
+    );
+
+    localStorage.setItem(
+        "shopPhone",
+        phone
+    );
+
+}
+
+
+/* =========================
+   LOAD SHOP INFO
+========================= */
+
+function loadShopInfo() {
+
+    const name =
+        localStorage.getItem("shopName");
+
+    const phone =
+        localStorage.getItem("shopPhone");
+
+    if (name) {
+
+        document.getElementById(
+            "shopName"
+        ).value = name;
+
+    }
+
+    if (phone) {
+
+        document.getElementById(
+            "shopPhone"
+        ).value = phone;
+
+    }
+
+}
+
+
+/* =========================
+   UPDATE VOUCHER
+========================= */
+
+function updateVoucher() {
+
+    const shopName =
+        document.getElementById(
+            "shopName"
+        ).value.trim();
+
+    const shopPhone =
+        document.getElementById(
+            "shopPhone"
+        ).value.trim();
+
+    const customer =
+        document.getElementById(
+            "customerName"
+        ).value.trim();
+
+    document.getElementById(
+        "displayShopName"
+    ).textContent =
+        shopName || "ဆိုင်အမည်";
+
+    document.getElementById(
+        "displayShopPhone"
+    ).textContent =
+        shopPhone
+        ? "ဖုန်း - " + shopPhone
+        : "";
+
+    document.getElementById(
+        "displayCustomer"
+    ).textContent =
+        customer
+        ? "ဝယ်ယူသူ - " + customer
+        : "ဝယ်ယူသူ -";
+
+    document.getElementById(
+        "voucherNo"
+    ).textContent =
+        getVoucherNumber();
+
+    const now = new Date();
+
+    const date =
+        now.toLocaleDateString(
+            "en-GB"
+        );
+
+    document.getElementById(
+        "displayDate"
+    ).textContent =
+        "ရက်စွဲ - " + date;
+
+    updateTable();
+
+}
+
+
+/* =========================
+   ADD ITEM
+========================= */
+
+function addItem() {
+
+    const nameInput =
+        document.getElementById(
+            "itemName"
+        );
+
+    const qtyInput =
+        document.getElementById(
+            "itemQty"
+        );
+
+    const priceInput =
+        document.getElementById(
+            "itemPrice"
+        );
+
+    const name =
+        nameInput.value.trim();
+
+    const qty =
+        Number(qtyInput.value);
+
+    const price =
+        Number(priceInput.value);
+
+    if (!name) {
+
+        alert(
+            "ပစ္စည်းအမည် ဖြည့်ပေးပါ။"
+        );
+
+        nameInput.focus();
+
+        return;
+    }
+
+    if (
+        !Number.isFinite(qty) ||
+        qty <= 0
+    ) {
+
+        alert(
+            "ခုရေ မှန်ကန်စွာ ဖြည့်ပေးပါ။"
+        );
+
+        qtyInput.focus();
+
+        return;
+    }
+
+    if (
+        !Number.isFinite(price) ||
+        price <= 0
+    ) {
+
+        alert(
+            "စျေးနှုန်း မှန်ကန်စွာ ဖြည့်ပေးပါ။"
+        );
+
+        priceInput.focus();
+
+        return;
+    }
+
+    const item = {
+
+        name: name,
+
+        qty: qty,
+
+        price: price,
+
+        subtotal: qty * price
+
+    };
+
+
+    if (editingIndex >= 0) {
+
+        items[editingIndex] =
+            item;
+
+        editingIndex = -1;
+
+    } else {
+
+        items.push(item);
+
+    }
+
+
+    nameInput.value = "";
+
+    qtyInput.value = "1";
+
+    priceInput.value = "";
+
+    nameInput.focus();
+
+    updateVoucher();
+
+}
+
+
+/* =========================
+   UPDATE TABLE
+========================= */
+
+function updateTable() {
+
+    const tbody =
+        document.getElementById(
+            "voucherBody"
+        );
+
+    tbody.innerHTML = "";
+
+    if (items.length === 0) {
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="5" class="empty">
+                    ပစ္စည်းထည့်ရန်
+                </td>
+            </tr>
+        `;
+
+        updateSummary();
+
+        return;
+    }
+
+
+    items.forEach(
+        function(item, index) {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+            const name =
+                document.createElement(
+                    "td"
+                );
+
+            name.textContent =
+                item.name;
+
+
+            const qty =
+                document.createElement(
+                    "td"
+                );
+
+            qty.textContent =
+                money(item.qty);
+
+            qty.className =
+                "center";
+
+
+            const price =
+                document.createElement(
+                    "td"
+                );
+
+            price.textContent =
+                money(item.price);
+
+            price.className =
+                "right";
+
+
+            const subtotal =
+                document.createElement(
+                    "td"
+                );
+
+            subtotal.textContent =
+                money(item.subtotal);
+
+            subtotal.className =
+                "right";
+
+
+            const action =
+                document.createElement(
+                    "td"
+                );
+
+            action.className =
+                "center";
+
+
+            const actionBox =
+                document.createElement(
+                    "div"
+                );
+
+            actionBox.className =
+                "item-actions";
+
+
+            const edit =
+                document.createElement(
+                    "button"
+                );
+
+            edit.type = "button";
+
+            edit.textContent =
+                "✏️";
+
+            edit.className =
+                "btn-small btn-edit";
+
+            edit.onclick =
+                function() {
+
+                    editItem(index);
+
+                };
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+            remove.type = "button";
+
+            remove.textContent =
+                "🗑️";
+
+            remove.className =
+                "btn-small btn-delete";
+
+            remove.onclick =
+                function() {
+
+                    deleteItem(index);
+
+                };
+
+
+            actionBox.appendChild(
+                edit
+            );
+
+            actionBox.appendChild(
+                remove
+            );
+
+            action.appendChild(
+                actionBox
+            );
+
+
+            row.appendChild(name);
+
+            row.appendChild(qty);
+
+            row.appendChild(price);
+
+            row.appendChild(subtotal);
+
+            row.appendChild(action);
+
+            tbody.appendChild(row);
+
+        }
+    );
+
+
+    updateSummary();
+
+}
+
+
+/* =========================
+   EDIT ITEM
+========================= */
+
+function editItem(index) {
+
+    const item =
+        items[index];
+
+    document.getElementById(
+        "itemName"
+    ).value =
+        item.name;
+
+    document.getElementById(
+        "itemQty"
+    ).value =
+        item.qty;
+
+    document.getElementById(
+        "itemPrice"
+    ).value =
+        item.price;
+
+    editingIndex = index;
+
+    document.getElementById(
+        "itemName"
+    ).focus();
+
+}
+
+
+/* =========================
+   DELETE ITEM
+========================= */
+
+function deleteItem(index) {
+
+    const ok =
+        confirm(
+            "ဒီပစ္စည်းကို ဖျက်မလား?"
+        );
+
+    if (!ok) {
+        return;
+    }
+
+    items.splice(
+        index,
+        1
+    );
+
+    updateVoucher();
+
+}
+
+
+/* =========================
+   SUMMARY
+========================= */
+
+function updateSummary() {
+
+    let total = 0;
+
+    items.forEach(
+        function(item) {
+
+            total +=
+                Number(
+                    item.subtotal
+                );
+
+        }
+    );
+
+
+    const discount =
+        Number(
+            document.getElementById(
+                "discount"
+            ).value
+        ) || 0;
+
+
+    const paid =
+        Number(
+            document.getElementById(
+                "paid"
+            ).value
+        ) || 0;
+
+
+    const grandTotal =
+        Math.max(
+            0,
+            total - discount
+        );
+
+
+    const balance =
+        Math.max(
+            0,
+            grandTotal - paid
+        );
+
+
+    document.getElementById(
+        "subtotal"
+    ).textContent =
+        money(total) + " MMK";
+
+
+    document.getElementById(
+        "displayDiscount"
+    ).textContent =
+        money(discount) + " MMK";
+
+
+    document.getElementById(
+        "grandTotal"
+    ).textContent =
+        money(grandTotal) + " MMK";
+
+
+    document.getElementById(
+        "displayPaid"
+    ).textContent =
+        money(paid) + " MMK";
+
+
+    document.getElementById(
+        "balance"
+    ).textContent =
+        money(balance) + " MMK";
+
+}
+
+
+/* =========================
+   PDF
+========================= */
+
+async function generatePDF() {
+
+    if (items.length === 0) {
+
+        alert(
+            "ပစ္စည်းအနည်းဆုံး ၁ ခု ထည့်ပါ။"
+        );
+
+        return;
+    }
+
+
+    if (
+        typeof html2canvas ===
+        "undefined"
+    ) {
+
+        alert(
+            "PDF Library မတက်ပါ။ Internet စစ်ပေးပါ။"
+        );
+
+        return;
+    }
+
+
+    if (
+        !window.jspdf ||
+        !window.jspdf.jsPDF
+    ) {
+
+        alert(
+            "PDF Library မတက်ပါ။ Internet စစ်ပေးပါ။"
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.querySelector(
+            ".btn-pdf"
+        );
+
+
+    const voucher =
+        document.getElementById(
+            "printableVoucher"
+        );
+
+
+    try {
+
+        button.disabled = true;
+
+        button.textContent =
+            "PDF ပြုလုပ်နေပါသည်...";
+
+
+        if (document.fonts) {
+
+            await document.fonts.ready;
+
+        }
+
+
+        const canvas =
+            await html2canvas(
+                voucher,
+                {
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor:
+                        "#ffffff"
+                }
+            );
+
+
+        const image =
+            canvas.toDataURL(
+                "image/png"
+            );
+
+
+        const PDF =
+            window.jspdf.jsPDF;
+
+
+        const pdf =
+            new PDF(
+                "p",
+                "mm",
+                "a4"
+            );
+
+
+        const pageWidth =
+            pdf.internal.pageSize
+                .getWidth();
+
+
+        const pageHeight =
+            pdf.internal.pageSize
+                .getHeight();
+
+
+        const margin = 10;
+
+
+        const width =
+            pageWidth -
+            margin * 2;
+
+
+        let height =
+            canvas.height *
+            width /
+            canvas.width;
+
+
+        const maxHeight =
+            pageHeight -
+            margin * 2;
+
+
+        if (
+            height >
+            maxHeight
+        ) {
+
+            height =
+                maxHeight;
+
+        }
+
+
+        pdf.addImage(
+            image,
+            "PNG",
+            margin,
+            margin,
+            width,
+            height
+        );
+
+
+        let shopName =
+            document.getElementById(
+                "shopName"
+            ).value.trim();
+
+
+        shopName =
+            shopName ||
+            "Shop";
+
+
+        shopName =
+            shopName
+                .replace(
+                    /[\\/:*?"<>|]/g,
+                    "_"
+                )
+                .replace(
+                    /\s+/g,
+                    "_"
+                );
+
+
+        const date =
+            new Date()
+                .toISOString()
+                .slice(0, 10);
+
+
+        const number =
+            getVoucherNumber();
+
+
+        pdf.save(
+            shopName +
+            "_Voucher_" +
+            number +
+            "_" +
+            date +
+            ".pdf"
+        );
+
+
+        nextVoucherNumber();
+
+
+        document.getElementById(
+            "voucherNo"
+        ).textContent =
+            getVoucherNumber();
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "PDF အောင်မြင်စွာ ထုတ်ပြီးပါပြီ။";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "PDF ထုတ်ရာတွင် Error ဖြစ်နေပါသည်။\n\n" +
+            error.message
+        );
+
+
+    } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "📄 PDF ဘောင်ချာထုတ်မည်";
+
+    }
+
+}
+
+
+/* =========================
+   SHARE
+========================= */
+
+async function shareVoucher() {
+
+    if (items.length === 0) {
+
+        alert(
+            "Share မလုပ်ခင် ပစ္စည်းထည့်ပါ။"
+        );
+
+        return;
+    }
+
+
+    const shop =
+        document.getElementById(
+            "shopName"
+        ).value ||
+        "Shop";
+
+
+    const total =
+        document.getElementById(
+            "grandTotal"
+        ).textContent;
+
+
+    const text =
+        shop +
+        "\n" +
+        "Voucher No: " +
+        getVoucherNumber() +
+        "\n" +
+        "စုစုပေါင်း: " +
+        total;
+
+
+    if (
+        navigator.share
+    ) {
+
+        try {
+
+            await navigator.share(
+                {
+                    title:
+                        "Shop Voucher",
+                    text:
+                        text
+                }
+            );
+
+        } catch (error) {
+
+            console.log(
+                "Share cancelled"
+            );
+
+        }
+
+    } else {
+
+        try {
+
+            await navigator.clipboard.writeText(
+                text
+            );
+
+            alert(
+                "Voucher အချက်အလက်ကို Copy လုပ်ပြီးပါပြီ။"
+            );
+
+        } catch (error) {
+
+            alert(text);
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   ENTER KEY
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        const id =
+            document.activeElement
+                ? document.activeElement.id
+                : "";
+
+
+        if (
+            event.key === "Enter" &&
+            (
+                id === "itemName" ||
+                id === "itemQty" ||
+                id === "itemPrice"
+            )
+        ) {
+
+            event.preventDefault();
+
+            addItem();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   START
+========================= */
+
+loadShopInfo();
+
+updateVoucher();
+
+
+/* =========================
+   PWA SERVICE WORKER
+========================= */
+
+if (
+    "serviceWorker" in navigator
+) {
+
+    window.addEventListener(
+        "load",
+        function() {
+
+            navigator.serviceWorker
+                .register(
+                    "sw.js"
+                )
+                .catch(
+                    function(error) {
+
+                        console.log(
+                            "Service Worker:",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>
