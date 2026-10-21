@@ -3,22 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ဆိုင်ဘောင်ချာ</title>
 
-    <!-- Myanmar Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -43,19 +35,9 @@
             margin-top: 0;
         }
 
-        .form-row {
-            display: flex;
-            gap: 12px;
-        }
-
-        .form-group {
-            flex: 1;
-            margin-bottom: 15px;
-        }
-
-        .item-name {
-            flex: 2;
-        }
+        .form-row { display: flex; gap: 12px; }
+        .form-group { flex: 1; margin-bottom: 15px; }
+        .item-name { flex: 2; }
 
         label {
             display: block;
@@ -74,9 +56,7 @@
             outline: none;
         }
 
-        input:focus {
-            border-color: #2980b9;
-        }
+        input:focus { border-color: #2980b9; }
 
         hr {
             border: 0;
@@ -96,32 +76,11 @@
             padding: 13px;
         }
 
-        button:disabled {
-            opacity: .6;
-            cursor: not-allowed;
-        }
-
-        .btn-add {
-            background: #2980b9;
-            margin-bottom: 20px;
-        }
-
-        .btn-add:hover {
-            background: #216a99;
-        }
-
-        .btn-pdf {
-            background: #e67e22;
-            margin-top: 20px;
-        }
-
-        .btn-pdf:hover {
-            background: #d35400;
-        }
-
-        /* ===============================
-           VOUCHER
-        =============================== */
+        button:disabled { opacity: .6; cursor: not-allowed; }
+        .btn-add { background: #2980b9; margin-bottom: 20px; }
+        .btn-add:hover { background: #216a99; }
+        .btn-pdf { background: #e67e22; margin-top: 20px; }
+        .btn-pdf:hover { background: #d35400; }
 
         #printableVoucher {
             background: white;
@@ -142,9 +101,7 @@
             font-size: 27px;
         }
 
-        .voucher-header p {
-            margin: 5px 0 0;
-        }
+        .voucher-header p { margin: 5px 0 0; }
 
         .voucher-info {
             display: flex;
@@ -153,13 +110,9 @@
             font-size: 14px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+        table { width: 100%; border-collapse: collapse; }
 
-        th,
-        td {
+        th, td {
             border: 1px solid #ddd;
             padding: 10px;
         }
@@ -170,17 +123,9 @@
             text-align: center;
         }
 
-        td {
-            background: white;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .right {
-            text-align: right;
-        }
+        td { background: white; }
+        .center { text-align: center; }
+        .right { text-align: right; }
 
         .empty {
             text-align: center;
@@ -196,30 +141,13 @@
         }
 
         @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 15px; }
+            .form-row { flex-direction: column; gap: 0; }
+            #printableVoucher { padding: 12px; }
+            .voucher-header h3 { font-size: 21px; }
 
-            body {
-                padding: 10px;
-            }
-
-            .container {
-                padding: 15px;
-            }
-
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            #printableVoucher {
-                padding: 12px;
-            }
-
-            .voucher-header h3 {
-                font-size: 21px;
-            }
-
-            th,
-            td {
+            th, td {
                 padding: 7px 5px;
                 font-size: 11px;
             }
@@ -228,796 +156,289 @@
 </head>
 
 <body>
-
 <div class="container">
-
     <h2>ဆိုင်ဘောင်ချာ ထုတ်ပေးသည့်စနစ်</h2>
 
-
-    <!-- =========================
-         SHOP
-    ========================== -->
-
     <div class="form-row">
-
         <div class="form-group">
-
             <label>ဆိုင်အမည်</label>
-
-            <input
-                type="text"
-                id="shopName"
-                placeholder="ဥပမာ - ရွှေစင် စတိုး"
-                oninput="updateHeader()"
-            >
-
+            <input type="text" id="shopName" placeholder="ဥပမာ - ရွှေစင် စတိုး" oninput="updateHeader()">
         </div>
-
-
         <div class="form-group">
-
             <label>ဖုန်းနံပါတ်</label>
-
-            <input
-                type="text"
-                id="shopPhone"
-                placeholder="09xxxxxxxxx"
-                oninput="updateHeader()"
-            >
-
+            <input type="text" id="shopPhone" placeholder="09xxxxxxxxx" oninput="updateHeader()">
         </div>
-
     </div>
-
-
-    <!-- =========================
-         CUSTOMER
-    ========================== -->
 
     <div class="form-group">
-
         <label>ဝယ်ယူသူအမည်</label>
-
-        <input
-            type="text"
-            id="custName"
-            placeholder="ဝယ်ယူသူအမည်"
-            oninput="updateHeader()"
-        >
-
+        <input type="text" id="custName" placeholder="ဝယ်ယူသူအမည်" oninput="updateHeader()">
     </div>
-
 
     <hr>
 
-
-    <!-- =========================
-         ITEM INPUT
-    ========================== -->
-
     <div class="form-row">
-
         <div class="form-group item-name">
-
             <label>အမျိုးအမည်</label>
-
-            <input
-                type="text"
-                id="itemName"
-                placeholder="ပစ္စည်းအမည်"
-            >
-
+            <input type="text" id="itemName" placeholder="ပစ္စည်းအမည်">
         </div>
-
-
         <div class="form-group">
-
             <label>ခုရေ</label>
-
-            <input
-                type="number"
-                id="itemQty"
-                placeholder="1"
-                min="1"
-            >
-
+            <input type="number" id="itemQty" placeholder="1" min="1">
         </div>
-
-
         <div class="form-group">
-
             <label>စျေးနှုန်း (MMK)</label>
-
-            <input
-                type="number"
-                id="itemPrice"
-                placeholder="1000"
-                min="0"
-            >
-
+            <input type="number" id="itemPrice" placeholder="1000" min="0">
         </div>
-
     </div>
 
-
-    <!-- ADD BUTTON -->
-    <button
-        type="button"
-        class="btn-add"
-        onclick="addItem()"
-    >
-        + ပစ္စည်းထည့်မည်
-    </button>
-
-
-    <!-- =========================
-         VOUCHER
-    ========================== -->
+    <button type="button" class="btn-add" onclick="addItem()">+ ပစ္စည်းထည့်မည်</button>
 
     <div id="printableVoucher">
-
         <div class="voucher-header">
-
-            <h3 id="displayShopName">
-                ဆိုင်အမည်
-            </h3>
-
+            <h3 id="displayShopName">ဆိုင်အမည်</h3>
             <p id="displayShopPhone"></p>
-
         </div>
-
 
         <div class="voucher-info">
-
-            <span id="displayCustName">
-                ဝယ်ယူသူ -
-            </span>
-
+            <span id="displayCustName">ဝယ်ယူသူ -</span>
             <span id="displayDate"></span>
-
         </div>
-
 
         <table>
-
             <thead>
-
                 <tr>
-
-                    <th>
-                        အမျိုးအမည်
-                    </th>
-
-                    <th width="12%">
-                        ခုရေ
-                    </th>
-
-                    <th width="25%">
-                        စျေးနှုန်း
-                    </th>
-
-                    <th width="25%">
-                        ကျသင့်ငွေ
-                    </th>
-
+                    <th>အမျိုးအမည်</th>
+                    <th width="12%">ခုရေ</th>
+                    <th width="25%">စျေးနှုန်း</th>
+                    <th width="25%">ကျသင့်ငွေ</th>
                 </tr>
-
             </thead>
-
-
             <tbody id="voucherBody">
-
                 <tr>
-
-                    <td
-                        colspan="4"
-                        class="empty"
-                    >
-                        ပစ္စည်းထည့်ရန်
-                    </td>
-
+                    <td colspan="4" class="empty">ပစ္စည်းထည့်ရန်</td>
                 </tr>
-
             </tbody>
-
         </table>
 
-
         <div class="total-section">
-
             စုစုပေါင်း ကျသင့်ငွေ -
-
-            <span id="grandTotal">
-                0
-            </span>
-
+            <span id="grandTotal">0</span>
             MMK
-
         </div>
-
     </div>
 
-
-    <!-- PDF BUTTON -->
-
-    <button
-        type="button"
-        class="btn-pdf"
-        onclick="generatePDF()"
-    >
-        PDF ဘောင်ချာ ဒေါင်းလုဒ်ဆွဲမည်
-    </button>
-
+    <button type="button" class="btn-pdf" onclick="generatePDF()">PDF ဘောင်ချာ ဒေါင်းလုဒ်ဆွဲမည်</button>
 </div>
 
-
-<!-- =========================
-     LIBRARIES
-========================= -->
-
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
-</script>
-
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-</script>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-
-"use strict";
-
-
-// ==========================================
-// DATA
-// ==========================================
-
 let items = [];
 
+function updateHeader() {
+    const shopName = document.getElementById("shopName").value.trim();
+    const shopPhone = document.getElementById("shopPhone").value.trim();
+    const custName = document.getElementById("custName").value.trim();
 
-// ==========================================
-// NUMBER FORMAT
-// ==========================================
+    document.getElementById("displayShopName").textContent = shopName || "ဆိုင်အမည်";
+    document.getElementById("displayShopPhone").textContent = shopPhone ? "ဖုန်း - " + shopPhone : "";
+    document.getElementById("displayCustName").textContent = "ဝယ်ယူသူ - " + (custName || "-");
+    document.getElementById("displayDate").textContent = new Date().toLocaleDateString("my-MM");
+}
 
 function formatMoney(value) {
-
-    return Number(value).toLocaleString(
-        "en-US",
-        {
-            maximumFractionDigits: 2
-        }
-    );
-
+    return Number(value).toLocaleString("en-US");
 }
-
-
-// ==========================================
-// UPDATE HEADER
-// ==========================================
-
-function updateHeader() {
-
-    const shopName =
-        document.getElementById("shopName").value.trim();
-
-    const shopPhone =
-        document.getElementById("shopPhone").value.trim();
-
-    const custName =
-        document.getElementById("custName").value.trim();
-
-
-    document.getElementById(
-        "displayShopName"
-    ).textContent =
-        shopName || "ဆိုင်အမည်";
-
-
-    document.getElementById(
-        "displayShopPhone"
-    ).textContent =
-        shopPhone
-            ? "ဖုန်း - " + shopPhone
-            : "";
-
-
-    document.getElementById(
-        "displayCustName"
-    ).textContent =
-        custName
-            ? "ဝယ်ယူသူ - " + custName
-            : "ဝယ်ယူသူ -";
-
-
-    const today = new Date();
-
-    const date =
-        today.toLocaleDateString("en-GB");
-
-
-    document.getElementById(
-        "displayDate"
-    ).textContent =
-        "ရက်စွဲ - " + date;
-
-}
-
-
-// ==========================================
-// ADD ITEM
-// ==========================================
 
 function addItem() {
+    const nameInput = document.getElementById("itemName");
+    const qtyInput = document.getElementById("itemQty");
+    const priceInput = document.getElementById("itemPrice");
 
-    const nameInput =
-        document.getElementById("itemName");
+    const name = nameInput.value.trim();
+    const qty = Number(qtyInput.value);
+    const price = Number(priceInput.value);
 
-    const qtyInput =
-        document.getElementById("itemQty");
-
-    const priceInput =
-        document.getElementById("itemPrice");
-
-
-    const name =
-        nameInput.value.trim();
-
-    const qty =
-        Number(qtyInput.value);
-
-    const price =
-        Number(priceInput.value);
-
-
-    // Validation
-
-    if (name === "") {
-
-        alert(
-            "ပစ္စည်းအမည် ဖြည့်ပေးပါ။"
-        );
-
+    if (!name) {
+        alert("ပစ္စည်းအမည် ဖြည့်ပေးပါ။");
         nameInput.focus();
-
         return;
     }
-
 
     if (!Number.isFinite(qty) || qty <= 0) {
-
-        alert(
-            "အရေအတွက် မှန်ကန်စွာ ဖြည့်ပေးပါ။"
-        );
-
+        alert("အရေအတွက် မှန်ကန်စွာ ဖြည့်ပေးပါ။");
         qtyInput.focus();
-
         return;
     }
-
 
     if (!Number.isFinite(price) || price <= 0) {
-
-        alert(
-            "စျေးနှုန်း မှန်ကန်စွာ ဖြည့်ပေးပါ။"
-        );
-
+        alert("စျေးနှုန်း မှန်ကန်စွာ ဖြည့်ပေးပါ။");
         priceInput.focus();
-
         return;
     }
 
-
-    // Calculate
-
-    const subtotal =
-        qty * price;
-
-
-    // Add
-
-    items.push({
-        name: name,
-        qty: qty,
-        price: price,
-        subtotal: subtotal
-    });
-
-
-    // Update
-
+    const subtotal = qty * price;
+    items.push({ name, qty, price, subtotal });
     updateTable();
-
-
-    // Clear
 
     nameInput.value = "";
     qtyInput.value = "";
     priceInput.value = "";
-
-
-    // Focus
-
     nameInput.focus();
-
 }
-
-
-// ==========================================
-// UPDATE TABLE
-// ==========================================
 
 function updateTable() {
-
-    const tbody =
-        document.getElementById(
-            "voucherBody"
-        );
-
-
+    const tbody = document.getElementById("voucherBody");
     tbody.innerHTML = "";
 
-
-    // Empty
-
     if (items.length === 0) {
-
         tbody.innerHTML = `
             <tr>
-                <td
-                    colspan="4"
-                    class="empty"
-                >
-                    ပစ္စည်းထည့်ရန်
-                </td>
+                <td colspan="4" class="empty">ပစ္စည်းထည့်ရန်</td>
             </tr>
         `;
-
-        document.getElementById(
-            "grandTotal"
-        ).textContent = "0";
-
+        document.getElementById("grandTotal").textContent = "0";
         return;
     }
-
 
     let total = 0;
-
-
     items.forEach(function(item) {
-
         total += item.subtotal;
 
+        const row = document.createElement("tr");
 
-        const row =
-            document.createElement("tr");
+        const nameCell = document.createElement("td");
+        nameCell.textContent = item.name;
 
+        const qtyCell = document.createElement("td");
+        qtyCell.textContent = formatMoney(item.qty);
+        qtyCell.className = "center";
 
-        // Name
+        const priceCell = document.createElement("td");
+        priceCell.textContent = formatMoney(item.price) + " MMK";
+        priceCell.className = "right";
 
-        const nameCell =
-            document.createElement("td");
+        const subtotalCell = document.createElement("td");
+        subtotalCell.textContent = formatMoney(item.subtotal) + " MMK";
+        subtotalCell.className = "right";
 
-        nameCell.textContent =
-            item.name;
-
-
-        // Quantity
-
-        const qtyCell =
-            document.createElement("td");
-
-        qtyCell.textContent =
-            formatMoney(item.qty);
-
-        qtyCell.className =
-            "center";
-
-
-        // Price
-
-        const priceCell =
-            document.createElement("td");
-
-        priceCell.textContent =
-            formatMoney(item.price) + " MMK";
-
-        priceCell.className =
-            "right";
-
-
-        // Subtotal
-
-        const subtotalCell =
-            document.createElement("td");
-
-        subtotalCell.textContent =
-            formatMoney(item.subtotal) + " MMK";
-
-        subtotalCell.className =
-            "right";
-
-
-        row.appendChild(nameCell);
-
-        row.appendChild(qtyCell);
-
-        row.appendChild(priceCell);
-
-        row.appendChild(subtotalCell);
-
-
+        row.append(nameCell, qtyCell, priceCell, subtotalCell);
         tbody.appendChild(row);
-
     });
 
-
-    // Total
-
-    document.getElementById(
-        "grandTotal"
-    ).textContent =
-        formatMoney(total);
-
+    document.getElementById("grandTotal").textContent = formatMoney(total);
 }
-
-
-// ==========================================
-// GENERATE PDF
-// ==========================================
 
 async function generatePDF() {
-
     if (items.length === 0) {
-
-        alert(
-            "PDF မထုတ်ခင် ပစ္စည်းအနည်းဆုံး ၁ ခု ထည့်ပေးပါ။"
-        );
-
+        alert("PDF မထုတ်ခင် ပစ္စည်းအနည်းဆုံး ၁ ခု ထည့်ပေးပါ။");
         return;
     }
 
-
-    if (
-        typeof html2canvas ===
-        "undefined"
-    ) {
-
-        alert(
-            "html2canvas မတက်ပါ။ Internet connection စစ်ပေးပါ။"
-        );
-
+    if (typeof html2canvas === "undefined") {
+        alert("html2canvas မတက်ပါ။ Internet connection စစ်ပေးပါ။");
         return;
     }
 
-
-    if (
-        !window.jspdf ||
-        !window.jspdf.jsPDF
-    ) {
-
-        alert(
-            "jsPDF မတက်ပါ။ Internet connection စစ်ပေးပါ။"
-        );
-
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+        alert("jsPDF မတက်ပါ။ Internet connection စစ်ပေးပါ။");
         return;
     }
 
-
-    const voucher =
-        document.getElementById(
-            "printableVoucher"
-        );
-
-
-    const button =
-        document.querySelector(
-            ".btn-pdf"
-        );
-
+    const voucher = document.getElementById("printableVoucher");
+    const button = document.querySelector(".btn-pdf");
+    const rowsPerPage = 12;
+    const rows = Array.from(document.querySelectorAll("#voucherBody tr"));
+    const pageCount = Math.ceil(rows.length / rowsPerPage);
+    let staging = null;
 
     try {
-
-        // Loading
-
         button.disabled = true;
+        button.textContent = "PDF ပြုလုပ်နေပါသည်...";
+        if (document.fonts) await document.fonts.ready;
 
-        button.textContent =
-            "PDF ပြုလုပ်နေပါသည်...";
-
-
-        // Wait for font
-
-        if (document.fonts) {
-
-            await document.fonts.ready;
-
-        }
-
-
-        // Canvas
-
-        const canvas =
-            await html2canvas(
-                voucher,
-                {
-                    scale: 2,
-                    useCORS: true,
-                    backgroundColor: "#ffffff",
-                    logging: false
-                }
-            );
-
-
-        const image =
-            canvas.toDataURL(
-                "image/png"
-            );
-
-
-        // PDF
-
-        const PDF =
-            window.jspdf.jsPDF;
-
-
-        const pdf =
-            new PDF(
-                "p",
-                "mm",
-                "a4"
-            );
-
-
-        const pageWidth =
-            pdf.internal.pageSize.getWidth();
-
-        const pageHeight =
-            pdf.internal.pageSize.getHeight();
-
-
+        const PDF = window.jspdf.jsPDF;
+        const pdf = new PDF("p", "mm", "a4");
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
         const margin = 10;
+        const printableWidth = pageWidth - margin * 2;
+        const printableHeight = pageHeight - margin * 2;
+        const voucherWidth = Math.ceil(voucher.getBoundingClientRect().width);
 
+        // Repeat the voucher header on each page and keep each item row together.
+        staging = document.createElement("div");
+        staging.style.cssText = `position:fixed;left:0;top:0;width:${voucherWidth}px;z-index:2147483647;background:#fff;`;
+        document.body.appendChild(staging);
 
-        const width =
-            pageWidth -
-            margin * 2;
+        for (let pageIndex = 0; pageIndex < pageCount; pageIndex++) {
+            const pageVoucher = voucher.cloneNode(true);
+            pageVoucher.style.width = `${voucherWidth}px`;
+            pageVoucher.style.maxWidth = "none";
+            pageVoucher.style.margin = "0";
 
+            const pageBody = pageVoucher.querySelector("#voucherBody");
+            const pageRows = rows.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage);
+            pageBody.replaceChildren(...pageRows.map(row => row.cloneNode(true)));
 
-        let height =
-            canvas.height *
-            width /
-            canvas.width;
+            if (pageIndex < pageCount - 1) {
+                pageVoucher.querySelector(".total-section").style.display = "none";
+            }
 
+            staging.replaceChildren(pageVoucher);
+            const canvas = await html2canvas(pageVoucher, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: "#ffffff",
+                logging: false
+            });
 
-        const maxHeight =
-            pageHeight -
-            margin * 2;
+            const image = canvas.toDataURL("image/png");
+            let imageWidth = printableWidth;
+            let imageHeight = canvas.height * imageWidth / canvas.width;
 
+            if (imageHeight > printableHeight) {
+                imageHeight = printableHeight;
+                imageWidth = canvas.width * imageHeight / canvas.height;
+            }
 
-        if (height > maxHeight) {
-
-            height =
-                maxHeight;
-
+            const x = margin + (printableWidth - imageWidth) / 2;
+            if (pageIndex > 0) pdf.addPage();
+            pdf.addImage(image, "PNG", x, margin, imageWidth, imageHeight);
         }
 
+        const shopName = document.getElementById("shopName").value.trim();
+        let fileName = (shopName || "Shop")
+            .replace(/[\\/:*?"<>|]/g, "_")
+            .replace(/\s+/g, "_");
 
-        pdf.addImage(
-            image,
-            "PNG",
-            margin,
-            margin,
-            width,
-            height
-        );
-
-
-        // Filename
-
-        const shopName =
-            document.getElementById(
-                "shopName"
-            ).value.trim();
-
-
-        let fileName =
-            shopName || "Shop";
-
-
-        fileName =
-            fileName
-                .replace(
-                    /[\\/:*?"<>|]/g,
-                    "_"
-                )
-                .replace(
-                    /\s+/g,
-                    "_"
-                );
-
-
-        const date =
-            new Date()
-                .toISOString()
-                .slice(0, 10);
-
-
-        pdf.save(
-            fileName +
-            "_Voucher_" +
-            date +
-            ".pdf"
-        );
-
+        const date = new Date().toISOString().slice(0, 10);
+        pdf.save(`${fileName}_Voucher_${date}.pdf`);
 
     } catch (error) {
-
         console.error(error);
-
-        alert(
-            "PDF ထုတ်ရာတွင် Error ဖြစ်နေပါသည်။\n\n" +
-            error.message
-        );
-
-
+        alert("PDF ထုတ်ရာတွင် Error ဖြစ်နေပါသည်။\n\n" + error.message);
     } finally {
-
+        if (staging) staging.remove();
         button.disabled = false;
-
-        button.textContent =
-            "PDF ဘောင်ချာ ဒေါင်းလုဒ်ဆွဲမည်";
-
+        button.textContent = "PDF ဘောင်ချာ ဒေါင်းလုဒ်ဆွဲမည်";
     }
-
 }
 
-
-// ==========================================
-// ENTER KEY
-// ==========================================
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key === "Enter" &&
-            (
-                document.activeElement.id ===
-                "itemName" ||
-
-                document.activeElement.id ===
-                "itemQty" ||
-
-                document.activeElement.id ===
-                "itemPrice"
-            )
-        ) {
-
-            event.preventDefault();
-
-            addItem();
-
-        }
-
+document.addEventListener("keydown", function(event) {
+    if (
+        event.key === "Enter" &&
+        ["itemName", "itemQty", "itemPrice"].includes(document.activeElement.id)
+    ) {
+        event.preventDefault();
+        addItem();
     }
-);
-
-
-// ==========================================
-// START
-// ==========================================
+});
 
 updateHeader();
-
 updateTable();
-
 </script>
-
 </body>
 </html>
