@@ -5,151 +5,300 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ဆိုင်ဘောင်ချာ</title>
 
+    <!-- Myanmar Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
-        * { box-sizing: border-box; }
+        :root {
+            --navy: #14243a;
+            --blue: #2563eb;
+            --teal: #0f9f9a;
+            --ink: #243247;
+            --muted: #6b7a90;
+            --line: #e3eaf2;
+            --surface: #ffffff;
+            --page: #eef3f8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
-            padding: 20px;
-            background: #f4f6f9;
-            color: #333;
+            min-height: 100vh;
+            padding: 32px 18px;
+            background: radial-gradient(circle at top left, #dcecff 0, transparent 34%), var(--page);
+            color: var(--ink);
             font-family: "Noto Sans Myanmar", sans-serif;
         }
 
         .container {
-            max-width: 760px;
+            max-width: 820px;
             margin: auto;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+            padding: 30px;
+            background: var(--surface);
+            border: 1px solid rgba(219, 228, 239, .9);
+            border-radius: 18px;
+            box-shadow: 0 18px 50px rgba(25, 48, 78, .12);
         }
 
         h2 {
+            margin: 0 0 26px;
+            color: var(--navy);
             text-align: center;
-            color: #2c3e50;
-            margin-top: 0;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: .1px;
         }
 
-        .form-row { display: flex; gap: 12px; }
-        .form-group { flex: 1; margin-bottom: 15px; }
-        .item-name { flex: 2; }
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 0;
+            margin-bottom: 17px;
+        }
+
+        .item-name {
+            flex: 2;
+        }
 
         label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 7px;
+            color: #41536b;
+            font-size: 14px;
             font-weight: 600;
         }
 
         input {
             width: 100%;
-            height: 44px;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-family: inherit;
+            height: 46px;
+            padding: 10px 13px;
+            border: 1px solid #d7e0eb;
+            border-radius: 9px;
+            background: #fbfdff;
+            color: var(--ink);
+            font: inherit;
             font-size: 15px;
             outline: none;
+            transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
         }
 
-        input:focus { border-color: #2980b9; }
+        input::placeholder {
+            color: #a4afbd;
+        }
+
+        input:focus {
+            border-color: var(--blue);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, .12);
+        }
 
         hr {
+            height: 1px;
+            margin: 9px 0 22px;
             border: 0;
-            border-top: 1px solid #eee;
-            margin: 20px 0;
+            background: var(--line);
         }
 
         button {
             width: 100%;
             border: 0;
-            border-radius: 7px;
+            border-radius: 10px;
             color: white;
             font-family: inherit;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 700;
             cursor: pointer;
-            padding: 13px;
+            padding: 13px 16px;
+            transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
         }
 
-        button:disabled { opacity: .6; cursor: not-allowed; }
-        .btn-add { background: #2980b9; margin-bottom: 20px; }
-        .btn-add:hover { background: #216a99; }
-        .btn-pdf { background: #e67e22; margin-top: 20px; }
-        .btn-pdf:hover { background: #d35400; }
+        button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(20, 36, 58, .16);
+            filter: brightness(1.04);
+        }
+
+        button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: .65;
+            cursor: not-allowed;
+        }
+
+        .btn-add {
+            margin: 1px 0 22px;
+            background: linear-gradient(135deg, #2563eb, #3478f6);
+        }
+
+        .btn-pdf {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #0f8f8b, #10aaa1);
+        }
 
         #printableVoucher {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+            padding: 28px;
+            background: #fff;
+            border: 1px solid #dfe7f0;
+            border-radius: 13px;
+            box-shadow: 0 5px 18px rgba(20, 36, 58, .06);
         }
 
         .voucher-header {
+            margin-bottom: 22px;
+            padding-bottom: 17px;
+            border-bottom: 2px solid #e6f1f1;
             text-align: center;
-            margin-bottom: 25px;
         }
 
         .voucher-header h3 {
             margin: 0;
-            color: #2c3e50;
+            color: var(--navy);
             font-size: 27px;
+            font-weight: 700;
         }
 
-        .voucher-header p { margin: 5px 0 0; }
+        .voucher-header p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
 
         .voucher-info {
             display: flex;
             justify-content: space-between;
+            gap: 12px;
             margin-bottom: 15px;
-            font-size: 14px;
+            color: #52647b;
+            font-size: 13px;
         }
 
-        table { width: 100%; border-collapse: collapse; }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+        th,
+        td {
+            padding: 11px 10px;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        th:first-child,
+        td:first-child {
+            border-left: 1px solid var(--line);
+        }
+
+        thead th:first-child {
+            border-top-left-radius: 7px;
+        }
+
+        thead th:last-child {
+            border-top-right-radius: 7px;
         }
 
         th {
-            background: #2980b9;
+            background: var(--navy);
             color: white;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        td {
+            background: #fff;
+            color: #34445a;
+            font-size: 13px;
+        }
+
+        tbody tr:nth-child(even) td {
+            background: #f7fafc;
+        }
+
+        .center {
             text-align: center;
         }
 
-        td { background: white; }
-        .center { text-align: center; }
-        .right { text-align: right; }
+        .right {
+            text-align: right;
+        }
 
         .empty {
+            padding: 22px;
+            color: #8a98aa;
             text-align: center;
-            color: #999;
-            padding: 20px;
         }
 
         .total-section {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border: 1px solid #cfe9e6;
+            border-radius: 9px;
+            background: #effaf8;
+            color: #155e59;
             text-align: right;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
-            margin-top: 20px;
         }
 
         @media (max-width: 600px) {
-            body { padding: 10px; }
-            .container { padding: 15px; }
-            .form-row { flex-direction: column; gap: 0; }
-            #printableVoucher { padding: 12px; }
-            .voucher-header h3 { font-size: 21px; }
+            body {
+                padding: 14px 10px;
+            }
 
-            th, td {
-                padding: 7px 5px;
+            .container {
+                padding: 19px 15px;
+                border-radius: 14px;
+            }
+
+            h2 {
+                margin-bottom: 21px;
+                font-size: 21px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            #printableVoucher {
+                padding: 15px 11px;
+            }
+
+            .voucher-header h3 {
+                font-size: 21px;
+            }
+
+            .voucher-info {
                 font-size: 11px;
+            }
+
+            th,
+            td {
+                padding: 8px 5px;
+                font-size: 10px;
+            }
+
+            .total-section {
+                padding: 11px;
+                font-size: 14px;
             }
         }
     </style>
@@ -162,17 +311,33 @@
     <div class="form-row">
         <div class="form-group">
             <label>ဆိုင်အမည်</label>
-            <input type="text" id="shopName" placeholder="ဥပမာ - ရွှေစင် စတိုး" oninput="updateHeader()">
+            <input
+                type="text"
+                id="shopName"
+                placeholder="ဥပမာ - ရွှေစင် စတိုး"
+                oninput="updateHeader()"
+            >
         </div>
+
         <div class="form-group">
             <label>ဖုန်းနံပါတ်</label>
-            <input type="text" id="shopPhone" placeholder="09xxxxxxxxx" oninput="updateHeader()">
+            <input
+                type="text"
+                id="shopPhone"
+                placeholder="09xxxxxxxxx"
+                oninput="updateHeader()"
+            >
         </div>
     </div>
 
     <div class="form-group">
         <label>ဝယ်ယူသူအမည်</label>
-        <input type="text" id="custName" placeholder="ဝယ်ယူသူအမည်" oninput="updateHeader()">
+        <input
+            type="text"
+            id="custName"
+            placeholder="ဝယ်ယူသူအမည်"
+            oninput="updateHeader()"
+        >
     </div>
 
     <hr>
@@ -182,17 +347,21 @@
             <label>အမျိုးအမည်</label>
             <input type="text" id="itemName" placeholder="ပစ္စည်းအမည်">
         </div>
+
         <div class="form-group">
             <label>ခုရေ</label>
             <input type="number" id="itemQty" placeholder="1" min="1">
         </div>
+
         <div class="form-group">
             <label>စျေးနှုန်း (MMK)</label>
             <input type="number" id="itemPrice" placeholder="1000" min="0">
         </div>
     </div>
 
-    <button type="button" class="btn-add" onclick="addItem()">+ ပစ္စည်းထည့်မည်</button>
+    <button type="button" class="btn-add" onclick="addItem()">
+        + ပစ္စည်းထည့်မည်
+    </button>
 
     <div id="printableVoucher">
         <div class="voucher-header">
@@ -214,6 +383,7 @@
                     <th width="25%">ကျသင့်ငွေ</th>
                 </tr>
             </thead>
+
             <tbody id="voucherBody">
                 <tr>
                     <td colspan="4" class="empty">ပစ္စည်းထည့်ရန်</td>
@@ -228,28 +398,42 @@
         </div>
     </div>
 
-    <button type="button" class="btn-pdf" onclick="generatePDF()">PDF ဘောင်ချာ ဒေါင်းလုဒ်ဆွဲမည်</button>
+    <button type="button" class="btn-pdf" onclick="generatePDF()">
+        PDF ဘောင်ချာ ဒေါင်းလုဒ်ဆွဲမည်
+    </button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
+"use strict";
+
 let items = [];
+
+function formatMoney(value) {
+    return Number(value).toLocaleString("en-US", {
+        maximumFractionDigits: 2
+    });
+}
 
 function updateHeader() {
     const shopName = document.getElementById("shopName").value.trim();
     const shopPhone = document.getElementById("shopPhone").value.trim();
     const custName = document.getElementById("custName").value.trim();
 
-    document.getElementById("displayShopName").textContent = shopName || "ဆိုင်အမည်";
-    document.getElementById("displayShopPhone").textContent = shopPhone ? "ဖုန်း - " + shopPhone : "";
-    document.getElementById("displayCustName").textContent = "ဝယ်ယူသူ - " + (custName || "-");
-    document.getElementById("displayDate").textContent = new Date().toLocaleDateString("my-MM");
-}
+    document.getElementById("displayShopName").textContent =
+        shopName || "ဆိုင်အမည်";
 
-function formatMoney(value) {
-    return Number(value).toLocaleString("en-US");
+    document.getElementById("displayShopPhone").textContent =
+        shopPhone ? "ဖုန်း - " + shopPhone : "";
+
+    document.getElementById("displayCustName").textContent =
+        custName ? "ဝယ်ယူသူ - " + custName : "ဝယ်ယူသူ -";
+
+    const date = new Date().toLocaleDateString("en-GB");
+    document.getElementById("displayDate").textContent =
+        "ရက်စွဲ - " + date;
 }
 
 function addItem() {
@@ -261,7 +445,7 @@ function addItem() {
     const qty = Number(qtyInput.value);
     const price = Number(priceInput.value);
 
-    if (!name) {
+    if (name === "") {
         alert("ပစ္စည်းအမည် ဖြည့်ပေးပါ။");
         nameInput.focus();
         return;
@@ -304,6 +488,7 @@ function updateTable() {
     }
 
     let total = 0;
+
     items.forEach(function(item) {
         total += item.subtotal;
 
@@ -357,7 +542,10 @@ async function generatePDF() {
     try {
         button.disabled = true;
         button.textContent = "PDF ပြုလုပ်နေပါသည်...";
-        if (document.fonts) await document.fonts.ready;
+
+        if (document.fonts) {
+            await document.fonts.ready;
+        }
 
         const PDF = window.jspdf.jsPDF;
         const pdf = new PDF("p", "mm", "a4");
@@ -368,9 +556,10 @@ async function generatePDF() {
         const printableHeight = pageHeight - margin * 2;
         const voucherWidth = Math.ceil(voucher.getBoundingClientRect().width);
 
-        // Repeat the voucher header on each page and keep each item row together.
+        // Repeat the voucher header on each page, with up to 12 item rows per page.
         staging = document.createElement("div");
-        staging.style.cssText = `position:fixed;left:0;top:0;width:${voucherWidth}px;z-index:2147483647;background:#fff;`;
+        staging.style.cssText =
+            `position:fixed;left:0;top:0;width:${voucherWidth}px;z-index:2147483647;background:#fff;`;
         document.body.appendChild(staging);
 
         for (let pageIndex = 0; pageIndex < pageCount; pageIndex++) {
@@ -380,14 +569,21 @@ async function generatePDF() {
             pageVoucher.style.margin = "0";
 
             const pageBody = pageVoucher.querySelector("#voucherBody");
-            const pageRows = rows.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage);
-            pageBody.replaceChildren(...pageRows.map(row => row.cloneNode(true)));
+            const pageRows = rows.slice(
+                pageIndex * rowsPerPage,
+                (pageIndex + 1) * rowsPerPage
+            );
+
+            pageBody.replaceChildren(
+                ...pageRows.map(row => row.cloneNode(true))
+            );
 
             if (pageIndex < pageCount - 1) {
                 pageVoucher.querySelector(".total-section").style.display = "none";
             }
 
             staging.replaceChildren(pageVoucher);
+
             const canvas = await html2canvas(pageVoucher, {
                 scale: 2,
                 useCORS: true,
@@ -405,12 +601,16 @@ async function generatePDF() {
             }
 
             const x = margin + (printableWidth - imageWidth) / 2;
-            if (pageIndex > 0) pdf.addPage();
+
+            if (pageIndex > 0) {
+                pdf.addPage();
+            }
+
             pdf.addImage(image, "PNG", x, margin, imageWidth, imageHeight);
         }
 
         const shopName = document.getElementById("shopName").value.trim();
-        let fileName = (shopName || "Shop")
+        const fileName = (shopName || "Shop")
             .replace(/[\\/:*?"<>|]/g, "_")
             .replace(/\s+/g, "_");
 
@@ -421,16 +621,21 @@ async function generatePDF() {
         console.error(error);
         alert("PDF ထုတ်ရာတွင် Error ဖြစ်နေပါသည်။\n\n" + error.message);
     } finally {
-        if (staging) staging.remove();
+        if (staging) {
+            staging.remove();
+        }
+
         button.disabled = false;
         button.textContent = "PDF ဘောင်ချာ ဒေါင်းလုဒ်ဆွဲမည်";
     }
 }
 
 document.addEventListener("keydown", function(event) {
+    const itemFields = ["itemName", "itemQty", "itemPrice"];
+
     if (
         event.key === "Enter" &&
-        ["itemName", "itemQty", "itemPrice"].includes(document.activeElement.id)
+        itemFields.includes(document.activeElement.id)
     ) {
         event.preventDefault();
         addItem();
